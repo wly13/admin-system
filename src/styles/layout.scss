@@ -1,0 +1,48 @@
+#app {
+  .layout-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .left-panel {
+    width: 10%;
+    max-height: 100%;
+    float: left;
+    .el-menu {
+      background-color: rgb(48, 65, 86) !important;
+      .nav-title{
+        margin-left: 5px;
+      }
+      .svg-container {
+        padding: 0px 5px;
+        color: #889aa4;
+        vertical-align: middle;
+        width: 30px;
+        display: inline-block;
+        box-sizing: border-box;
+      }
+      .el-submenu {
+        overflow: hidden;
+      }
+    }
+  }
+  .right-panel{
+    width: 90%;
+    max-height: 100%;
+    float: left;
+    .header-bar{
+      height: 100px;
+      background: #3f9cad;
+      .login-out{
+        .el-button{
+          background: #3f9cad;
+          color: #fff;
+          border: 1px solid #c6e1e8 
+        }
+      }
+    }
+    .app-main{
+      height: 100%;
+    }
+  }
+}
