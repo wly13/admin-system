@@ -1,14 +1,8 @@
 <template>
-  <div class="layout-container">
-    <!-- <p>this is a layout framework</p>
-    <el-button @click="loginOut">推出登录</el-button> -->
-    <!-- <div class="left-nav"> -->
+  <el-container class="layout-container">
       <left-panel></left-panel>
-    <!-- </div> -->
-    <!-- <div class="right-panel"> -->
       <right-panel></right-panel>
-    <!-- </div> -->
-  </div>
+  </el-container>
 </template>
 <script>
 import LeftPanel from './components/leftPanel'

@@ -1,9 +1,9 @@
 <template>
-  <div class="header-bar">
+  <el-header class="header-bar">
     <div class="login-out">
       <el-button @click="loginOut">退出登录</el-button>
     </div>
-  </div>
+  </el-header>
 </template>
 <script>
 export default {

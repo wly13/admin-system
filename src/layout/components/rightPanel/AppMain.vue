@@ -1,9 +1,9 @@
 <template>
-  <div class="app-main">
+  <el-main class="app-main">
     <transition name="fade" mode="out-in">
       <router-view :key="key"></router-view>
     </transition>
-  </div>
+  </el-main>
 </template>
 <script>
 export default {

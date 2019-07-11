@@ -1,6 +1,5 @@
 <template>
-  <div class="left-panel">
-    <el-scrollbar>
+  <el-aside class="left-panel">
       <el-menu
         :default-active="$route.path"
         class="el-menu-vertical"
@@ -31,8 +30,7 @@
           </el-submenu>
         </template>
       </el-menu>
-    </el-scrollbar>
-  </div>
+  </el-aside>
 </template>
 <script>
 const navData = require("@/assets/navBar.json");

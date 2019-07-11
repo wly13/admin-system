@@ -1,8 +1,8 @@
 <template>
-  <div class="right-panel">
+  <el-container direction="vertical" class="right-panel">
     <header-bar></header-bar>
     <app-main></app-main>
-  </div>
+  </el-container>
 </template>
 <script>
 import AppMain from './AppMain'
