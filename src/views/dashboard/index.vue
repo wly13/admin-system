@@ -166,7 +166,10 @@ export default {
 .right-panel {
   .app-main {
     .el-form {
+      height: 60px;
       background: #f2f2f2;
+      padding-top: 10px;
+      box-sizing: border-box;
     }
   }
 }
