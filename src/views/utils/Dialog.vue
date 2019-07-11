@@ -34,7 +34,6 @@
   </el-dialog>
 </template>
 <script>
-import axios from "axios";
 import { setTimeout } from 'timers';
 export default {
   name: "Dialog",
@@ -106,7 +105,7 @@ export default {
       this.msg.splice(0); //防止一直向数组里面添加数据，保持该数组只存传递过来的两个值
     },
     addSubmit() {
-      axios({
+      this.$axios({
         method:'post',
         url:"http://localhost:8080/api/addList",
         changeOrigin:true,

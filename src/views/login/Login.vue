@@ -51,9 +51,7 @@
   </div>
 </template>
 <script>
-import axios from "axios";
 import { setTimeout } from "timers";
-// import axios from 'vue-cli-plugin-axios'
 export default {
   name: "Login",
   data() {
@@ -117,7 +115,7 @@ export default {
         this.warnDialog = true;
       } else {
         this.warnDialog = false;
-        axios({
+        this.$axios({
           method: "post",
           changeOrigin: true,
           url: "http://localhost:8080/api/login",

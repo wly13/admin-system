@@ -46,7 +46,6 @@
 </template>
 <script>
 // import List from "./List";
-import axios from "axios";
 import Dialog from "@/views/utils/Dialog";
 import { type } from "os";
 export default {
@@ -84,7 +83,7 @@ export default {
   methods: {
     getUsers() {
       this.listLoading = true;
-      axios({
+      this.$axios({
         method: "POST",
         url: "http://localhost:8080/api/name",
         changeOrigin: true,
@@ -124,7 +123,7 @@ export default {
         type: "warning"
       })
         .then(() => {
-          axios({
+          this.$axios({
             method: "post",
             url: "http://localhost:8080/api/delList",
             changeOrigin: true,

@@ -19,7 +19,6 @@
   </div>
 </template>
 <script>
-import axios from "axios";
 import Paging from './Paging'
 export default {
   name: "List",
@@ -40,7 +39,7 @@ export default {
     };
   },
   mounted() {
-    axios({
+    this.$axios({
       method: "get",
       url: "http://localhost:8080/api/list",
       changeOrigin: true
