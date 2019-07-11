@@ -7,9 +7,11 @@ import Element from 'element-ui'
 
 import i18n from './lang' //引入多语言切换功能插件
 
-
 //引入axios插件
 import axios from 'axios';
+
+// 引入echarts插件
+import echarts from 'echarts';
 
 import store from './store'
 import './styles/element-variables.scss' //element-ui css
@@ -39,6 +41,7 @@ Vue.use(Element, {
 // axios.defaults.baseURL = 'https://localhost:8080/api'
 // 将API方法绑定到全局
 Vue.prototype.$axios = axios
+Vue.prototype.$echarts = echarts;
 
 Vue.config.productionTip = false
 
