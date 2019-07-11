@@ -10,14 +10,14 @@ const store = new Vuex.Store ({
   mutations: {
     Login (state, data) {
       // state.isLogin = data;
-      localStorage.setItem ('loginName', data.username);
-      localStorage.setItem ('isLogin', true);
+      sessionStorage.setItem ('loginName', data.username);
+      sessionStorage.setItem ('isLogin', true);
       state.loginName = data.username;
       state.isLogin = true;
     },
     loginOut(state){
-      localStorage.removeItem('loginName');
-      localStorage.removeItem('isLogin');
+      sessionStorage.removeItem('loginName');
+      sessionStorage.removeItem('isLogin');
       state.isLogin=false;
       state.loginName='';
     }
@@ -25,8 +25,8 @@ const store = new Vuex.Store ({
   getters: {
     isLogin (state) {
       if (!state.isLogin) {
-        state.isLogin = localStorage.getItem ('isLogin'); //从sessionStorage中读取状态
-        state.loginName = localStorage.getItem ('loginName');
+        state.isLogin = sessionStorage.getItem ('isLogin'); //从sessionStorage中读取状态
+        state.loginName = sessionStorage.getItem ('loginName');
       }
       return state.isLogin;
     },
