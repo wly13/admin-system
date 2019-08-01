@@ -74,6 +74,11 @@ export default {
           birth: "",
           address: ""
         }
+      },
+      info:{
+      age:[],
+      sex:[],
+      address:[]
       }
     };
   },
@@ -94,6 +99,12 @@ export default {
         this.listLoading = false;
         this.dataList = result.data;
         this.total = this.dataList.length;
+        for(let i = 0;i<this.total;i++){
+          this.info.age.push(this.dataList[i].age);
+          this.info.sex.push(this.dataList[i].sex);
+          this.info.address.push(this.dataList[i].address);
+        }
+        this.$store.commit("getInfo",this.info);
       });
     },
     handleAdd() {

@@ -120,10 +120,12 @@ export default new Router({
      path:"/chart",
      icon:"chart",
      title:"route.charts",
+     component:Layout,
      children:[
        {
-         path:"/keyboardChart",
-         title:"route.keyboardChart"
+         path:"/echarts/line",
+         title:"route.line",
+         component:() => import("@/views/echarts/line")
        }
      ]
    },
