@@ -14,7 +14,7 @@
     </el-form>
 
     <!-- table -->
-    <el-table :data="dataList" stripe style="width:100%" v-loading="listLoading">
+    <el-table :data="showData" stripe style="width:100%" v-loading="listLoading">
       <el-table-column type="selection" width="55"></el-table-column>
       <!-- <el-table-column type="index" prop="id" label="编号" width="100" sortable></el-table-column> -->
       <el-table-column prop="id" label="编号" width="100" sortable></el-table-column>
@@ -37,7 +37,15 @@
     <!-- <List :message='byValue'></List> -->
 
     <!-- 分页 paging -->
-    <el-pagination :total="total" :page-size="pageSize" layout="total, prev, pager, next"></el-pagination>
+    <el-pagination 
+    @size-change="handleSizeChange"
+    @current-change="handleCurrentChange"
+    :current-page="currentPage"
+    :page-size="pageSize" 
+    layout="total, prev, pager, next"
+    background
+    :total="total" 
+    ></el-pagination>
 
     <!-- dialog -->
     <!-- <Dialog ref="msg"></Dialog> -->
@@ -61,9 +69,11 @@ export default {
         name: ""
       },
       dataList: [],
+      showData:[],
       total: 0,
       pageSize: 10,
       listLoading: false,
+      currentPage:1,
       message: {
         title: "",
         visible: false,
@@ -82,9 +92,13 @@ export default {
       }
     };
   },
-  mounted() {
+  created(){
     this.getUsers();
+    this.showTable(this.currentPage,this.pageSize);
   },
+  // mounted() {
+  //   this.getUsers();
+  // },
   methods: {
     getUsers() {
       this.listLoading = true;
@@ -127,7 +141,6 @@ export default {
     },
     handleDel(row) {
       // console.log(row);
-
       this.$confirm("确认删除？", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -168,8 +181,34 @@ export default {
             messsage: "已取消删除"
           });
         });
+    },
+    handleSizeChange: function (size) {
+      this.pagesize = size;
+      console.log(this.pagesize);  //每页下拉显示数据
+      this.showTable(this.currentPage,this.pageSize);
+    },
+    handleCurrentChange: function(currentPage){
+      this.currentPage = currentPage;
+      console.log(this.currentPage);  //点击第几页
+      this.showTable(this.currentPage,this.pageSize);
+
+    },
+    showTable(currentPage,pageSize){
+      this.listLoading = true;
+      this.$axios({
+        method: "POST",
+        url: "http://localhost:8080/api/pagingQuery",
+        changeOrigin: true,
+        data: {
+          "start":currentPage,
+          "pageSize":pageSize
+        }
+      }).then(result => {
+        this.listLoading = false;
+        this.showData = result.data;
+      });
     }
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
