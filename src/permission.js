@@ -4,7 +4,7 @@ import store from './store'
 // import { async } from 'q';
 router.beforeEach((to ,from ,next) =>{
   let isLogin = store.getters.isLogin;
-  console.log(isLogin)
+  // console.log(isLogin);
   if(!isLogin){
     if(to.path!=='/login'){
       return next({path:'/login'})
