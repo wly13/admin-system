@@ -41,8 +41,9 @@
     @size-change="handleSizeChange"
     @current-change="handleCurrentChange"
     :current-page="currentPage"
+    :page-sizes="[5,10,20]"
     :page-size="pageSize" 
-    layout="total, prev, pager, next"
+    layout="total,sizes, prev, pager, next"
     background
     :total="total" 
     ></el-pagination>
@@ -183,8 +184,8 @@ export default {
         });
     },
     handleSizeChange: function (size) {
-      this.pagesize = size;
-      console.log(this.pagesize);  //每页下拉显示数据
+      this.pageSize = size;
+      console.log(this.pageSize);  //每页下拉显示数据
       this.showTable(this.currentPage,this.pageSize);
     },
     handleCurrentChange: function(currentPage){
