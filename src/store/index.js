@@ -6,11 +6,6 @@ const store = new Vuex.Store ({
   state: {
     isLogin: false,
     loginName: null,
-    info:{
-      age:[],
-      sex:[],
-      address:[]
-    }
   },
   mutations: {
     Login (state, data) {
@@ -25,12 +20,6 @@ const store = new Vuex.Store ({
       sessionStorage.removeItem('isLogin');
       state.isLogin=false;
       state.loginName='';
-    },
-    getInfo(state,data){
-      state.info.sex = data.sex;
-      state.info.age= data.age;
-      state.info.address = data.address;
-      console.log(state.info.sex);
     },
   },
   getters: {
