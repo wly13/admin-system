@@ -37,15 +37,15 @@
     <!-- <List :message='byValue'></List> -->
 
     <!-- 分页 paging -->
-    <el-pagination 
-    @size-change="handleSizeChange"
-    @current-change="handleCurrentChange"
-    :current-page="currentPage"
-    :page-sizes="[5,10,20]"
-    :page-size="pageSize" 
-    layout="total,sizes, prev, pager, next"
-    background
-    :total="total" 
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage"
+      :page-sizes="[5,10,20]"
+      :page-size="pageSize"
+      layout="total,sizes, prev, pager, next"
+      background
+      :total="total"
     ></el-pagination>
 
     <!-- dialog -->
@@ -70,11 +70,11 @@ export default {
         name: ""
       },
       dataList: [],
-      showData:[],
+      showData: [],
       total: 0,
       pageSize: 10,
       listLoading: false,
-      currentPage:1,
+      currentPage: 1,
       message: {
         title: "",
         visible: false,
@@ -86,16 +86,16 @@ export default {
           address: ""
         }
       },
-      info:{
-      age:[],
-      sex:[],
-      address:[]
+      info: {
+        age: [],
+        sex: [],
+        address: []
       }
     };
   },
-  created(){
+  created() {
     this.getUsers();
-    this.showTable(this.currentPage,this.pageSize);
+    this.showTable(this.currentPage, this.pageSize);
   },
   // mounted() {
   //   this.getUsers();
@@ -114,12 +114,11 @@ export default {
         this.listLoading = false;
         this.dataList = result.data;
         this.total = this.dataList.length;
-        for(let i = 0;i<this.total;i++){
-          this.info.age.push(this.dataList[i].age);
-          this.info.sex.push(this.dataList[i].sex);
-          this.info.address.push(this.dataList[i].address);
+        if(this.filters.name !==''){
+          this.showData = this.dataList;
+        }else{
+          this.showTable(this.currentPage,this.pageSize);
         }
-        this.$store.commit("getInfo",this.info);
       });
     },
     handleAdd() {
@@ -163,13 +162,13 @@ export default {
                   type: "success",
                   message: "删除成功"
                 });
-                this.reload(); 
+                this.reload();
               } else {
                 this.$message({
                   type: "erroe",
                   message: "删除失败"
                 });
-                this.reload()
+                this.reload();
               }
             })
             .catch(error => {
@@ -183,33 +182,32 @@ export default {
           });
         });
     },
-    handleSizeChange: function (size) {
+    handleSizeChange: function(size) {
       this.pageSize = size;
-      console.log(this.pageSize);  //每页下拉显示数据
-      this.showTable(this.currentPage,this.pageSize);
+      //console.log(this.pageSize);  //每页下拉显示数据
+      this.showTable(this.currentPage, this.pageSize);
     },
-    handleCurrentChange: function(currentPage){
+    handleCurrentChange: function(currentPage) {
       this.currentPage = currentPage;
-      console.log(this.currentPage);  //点击第几页
-      this.showTable(this.currentPage,this.pageSize);
-
+      //console.log(this.currentPage);  //点击第几页
+      this.showTable(this.currentPage, this.pageSize);
     },
-    showTable(currentPage,pageSize){
+    showTable(currentPage, pageSize) {
       this.listLoading = true;
       this.$axios({
         method: "POST",
         url: "http://localhost:8080/api/pagingQuery",
         changeOrigin: true,
         data: {
-          "start":currentPage,
-          "pageSize":pageSize
+          start: currentPage,
+          pageSize: pageSize
         }
       }).then(result => {
         this.listLoading = false;
         this.showData = result.data;
       });
     }
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>
