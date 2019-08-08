@@ -12,7 +12,7 @@ import axios from 'axios';
 
 // 引入echarts插件
 import echarts from 'echarts';
-
+import $ from 'jquery';//引入jQuery;
 import store from './store'
 import './styles/element-variables.scss' //element-ui css
 import './styles/index.scss' // global css
@@ -42,7 +42,7 @@ Vue.use(Element, {
 // 将API方法绑定到全局
 Vue.prototype.$axios = axios
 Vue.prototype.$echarts = echarts;
-
+Vue.prototype.$ = $;
 Vue.config.productionTip = false
 
 new Vue({

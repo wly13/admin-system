@@ -1,4 +1,5 @@
 const path = require ('path');
+const webpack = require ('webpack');
 function resolve (dir) {
   return path.join (__dirname, dir);
 }
@@ -19,10 +20,10 @@ module.exports = {
       warnings: false,
       errors: true,
     },
-    proxy: { 
+    proxy: {
       '/api': {
         // target: "https://goods.footer.com/",
-        target: "http:localhost:8080",
+        target: 'http:localhost:8080',
         changeOrigin: true,
         // pathRewrite: {
         //   '^/apis': '/api',
@@ -30,7 +31,6 @@ module.exports = {
       },
     },
   },
-  
 
   chainWebpack: config => {
     // alias 配置
@@ -49,5 +49,15 @@ module.exports = {
       .options ({
         symbolId: '[name]',
       });
+  },
+  configureWebpack: {
+    plugins: [
+      new webpack.ProvidePlugin ({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+        Popper: ['popper.js', 'default']
+      }),
+    ],
   },
 };
